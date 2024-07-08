@@ -1,0 +1,27 @@
+name: 'comment'
+description:
+  'Posts a custom comment on pull requests whose title contains a specific
+  string'
+author: 'David Hörnmark'
+
+# Define your inputs here.
+inputs:
+  message:
+    description: 'Message to post'
+    required: true
+  title:
+    description: 'Title to look for in pull requests'
+    required: true
+  token:
+    description: 'Personal access token for the GitHub API'
+    required: true
+
+# Define your outputs here.
+outputs:
+  pr-numbers:
+    description:
+      'The numbers of the pull requests that the comment was posted on'
+
+runs:
+  using: node20
+  main: dist/index.js
