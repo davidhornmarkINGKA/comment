@@ -32785,7 +32785,10 @@ async function run() {
     core.info(`Owner: ${owner}`);
 
     const prs = await getPullRequestsInRepo(owner, repo, token);
-    const prNumbers = prs.map((pr) => pr.number);
+
+    const prsWithTitle = prs.filter((pr) => pr.title.includes(title));
+
+    const prNumbers = prsWithTitle.map((pr) => pr.number);
     if (prNumbers.length === 0) {
       core.info('No PRs found, exiting...');
       return;
